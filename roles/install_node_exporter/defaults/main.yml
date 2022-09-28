@@ -5,4 +5,4 @@ install_path: /opt/node-exporter
 
 # tarball download url
 download_url: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-arm64.tar.gz
-sha256_checkusum: 0b20aa75385a42857a67ee5f6c7f67b229039a22a49c5c61c33f071356415b59
+sha256_checksum: 0b20aa75385a42857a67ee5f6c7f67b229039a22a49c5c61c33f071356415b59
