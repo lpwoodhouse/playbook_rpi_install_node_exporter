@@ -6,6 +6,10 @@
 
 - name: download node_exporter tarball
   get_url:
-  url: "{{ download_url }}"
-  dest: /opt/node-exporter/
-  checksum: sha256:"{{ sha256_checksum }}"
+    url: "{{ download_url }}"
+    dest: /opt/node-exporter/
+    checksum: sha256:"{{ sha256_checksum }}"
+  register: download_result
+
+- debug:
+    var: "{{download_result.dest}}"
