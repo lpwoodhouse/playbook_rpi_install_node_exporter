@@ -1,0 +1,8 @@
+---
+- name: install node_exporter on rpi cluster nodes
+  hosts: all
+  become: true
+  gather_facts: true
+
+  roles:
+    - install_node_exporter

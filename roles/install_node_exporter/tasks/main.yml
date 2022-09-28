@@ -1,0 +1,11 @@
+---
+- name: create install path
+  file:
+    path: "{{ install_path }}"
+    state: directory
+
+- name: download node_exporter tarball
+  get_url:
+  url: "{{ download_url }}"
+  dest: /opt/node-exporter/
+  checksum: sha256:"{{ sha256_checksum }}"

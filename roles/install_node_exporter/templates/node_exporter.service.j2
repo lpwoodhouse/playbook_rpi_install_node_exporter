@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus Node Exporter
+Documentation=https://prometheus.io/docs/guides/node-exporter/
+After=network-online.target
+
+[Service]
+User={{ ansible_user }}
+Restart=on-failure
+
+ExecStart={{ install_path }}/node_exporter
+
+[Install]
+WantedBy=multi-user.target
