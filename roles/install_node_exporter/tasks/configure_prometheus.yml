@@ -25,3 +25,12 @@
       dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus.yml"
 
   delegate_to: "{{ prometheus_host }}"
+
+  # restart the prometheus container
+  - name: restart prometheus
+    docker_container:
+      name: prometheus
+      state: started
+      restart: yes
+
+  
