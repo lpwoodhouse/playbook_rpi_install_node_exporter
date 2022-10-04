@@ -1,10 +1,23 @@
 ---
 # main tasks for prometheus configuration
-- name: copy config to prometheus directory
-  template:
-    src: prometheus.yml.j2
-    dest: "{{ prometheus_config_dir }}/prometheus2.yml"
-    owner: root
-    group: root
-    mode: 0644
+- name: configure prometheus
+  block:
+
+  - name: create prometheus.d
+    file:
+      path: "{{ prometheus_config_dir }}/prometheus.d"
+      state: directory
+
+  - name: temp copy existing prometheus.yml config
+    copy:
+      src: "{{ prometheus_config_dir }}/prometheus.yml"
+      dest: "{{ prometheus_config_dir }}/prometheus.d/temp1.yml"
+      remote_src: yes
+
+  - name: temp copy new config to prometheus host
+    template:
+      src: prometheus.yml.j2
+      dest: "{{ prometheus_config_dir }}/prometheus.d/temp2.yml"
+  
+  
   delegate_to: "{{ prometheus_host }}"
