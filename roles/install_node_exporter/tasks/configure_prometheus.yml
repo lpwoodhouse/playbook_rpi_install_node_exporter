@@ -21,7 +21,7 @@
   
   - name: assemble new config from temp files
     assemble:
-      src: "{{ prometheus_config_dir }}/prometheus.d
-      dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus.yml
+      src: "{{ prometheus_config_dir }}/prometheus.d"
+      dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus.yml"
 
   delegate_to: "{{ prometheus_host }}"
