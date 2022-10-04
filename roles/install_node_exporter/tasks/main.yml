@@ -30,3 +30,7 @@
 - name: check metrics url
   uri:
     url: http://{{ ansible_default_ipv4.address }}:9100/metrics
+
+- name: configure prometheus
+  include_tasks: configure_prometheus.yml
+  when: prometheus_config|bool
