@@ -4,5 +4,15 @@
   become: true
   gather_facts: true
 
-  roles:
-    - install_node_exporter
+  
+  tasks:
+  
+  - name: make host group
+    set_fact:
+      rpi_hosts_group: "{{ansible_play_hosts}}"
+  
+  - debug:
+      var: "{{rpi_hosts_group}}"
+  
+  #roles:
+  #  - install_node_exporter
