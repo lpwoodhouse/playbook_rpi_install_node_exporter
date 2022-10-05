@@ -1,11 +1,4 @@
 ---
-# get the required rpi node variables for prometheus conifiguration 
-#- name: set rpi node variables
-#  set_fact:
-#    rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname']) }}"
-#    rpi_addresses: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_default_ipv4', 'address']) }}"
-#  delegate_to: localhost
-
 # configure prometheus.yml
 - name: update prometheus.yml configuration
   block:
@@ -15,37 +8,28 @@
       path: "{{ prometheus_config_dir }}/prometheus.d"
       state: directory
 
-  - name: copy existing prometheus.yml
+  - name: copy existing config
     copy:
       src: "{{ prometheus_config_dir }}/prometheus.yml"
       dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus1.yml"
       remote_src: yes
 
-  - name: copy new config to prometheus host
+  - name: transfer new config to prometheus host
     template:
       src: prometheus2.yml.j2
       dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus2.yml"
   
-  - name: assemble new config
+  - name: assemble final config
     assemble:
       src: "{{ prometheus_config_dir }}/prometheus.d"
-      #dest: "{{ prometheus_config_dir }}/prometheus.yml"
-      dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus.yml"
+      dest: "{{ prometheus_config_dir }}/prometheus.yml"      
       backup: yes
+    notify: restart prometheus
   
-  - name: remove temp config file
+  - name: remove temp config files
     file:
       path: "{{ prometheus_config_dir }}/prometheus.d"
-      state: absent
-    check_mode: yes
-
-  # restart the prometheus container
-  - name: restart prometheus
-    docker_container:
-      name: prometheus
-      state: started
-      restart: yes
-    check_mode: yes
+      state: absent  
 
   delegate_to: "{{ prometheus_host }}"
 
