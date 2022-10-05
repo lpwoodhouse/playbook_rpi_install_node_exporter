@@ -5,7 +5,7 @@
   gather_facts: true
   
   vars:
-    inc_prometheus_config: true #prometheus will be configured if true
+    inc_prometheus_config: true
     
   tasks:
 

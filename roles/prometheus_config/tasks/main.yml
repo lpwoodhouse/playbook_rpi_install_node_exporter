@@ -1,9 +1,12 @@
 ---
-rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname']) }}"
+# get the required rpi node variables for prometheus conifiguration 
+- name: set rpi node variables
+  set_fact:
+    rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname']) }}"
     rpi_addresses: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_default_ipv4', 'address']) }}"
-  
+  delegate_to: localhost
 
-# main tasks for prometheus configuration
+# configure prometheus.yml
 - name: update prometheus.yml configuration
   block:
 
@@ -26,13 +29,15 @@ rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname
   - name: assemble new config
     assemble:
       src: "{{ prometheus_config_dir }}/prometheus.d"
-      dest: "{{ prometheus_config_dir }}/prometheus.yml"
+      #dest: "{{ prometheus_config_dir }}/prometheus.yml"
+      dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus.yml"
       backup: yes
   
   - name: remove temp config file
     file:
       path: "{{ prometheus_config_dir }}/prometheus.d"
       state: absent
+    check_mode: yes
 
   # restart the prometheus container
   - name: restart prometheus
@@ -40,9 +45,6 @@ rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname
       name: prometheus
       state: started
       restart: yes
-
-
-
 
   delegate_to: "{{ prometheus_host }}"
 
