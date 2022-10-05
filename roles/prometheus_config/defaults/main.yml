@@ -1,0 +1,6 @@
+---
+prometheus_host: 10.0.0.22
+prometheus_config_dir: /etc/prometheus
+prometheus_job_name: test job
+prometheus_scrape_interval: 5s #prometheus global default is usually 15s
+

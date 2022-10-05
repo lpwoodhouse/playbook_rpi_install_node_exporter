@@ -1,4 +1,8 @@
 ---
+rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname']) }}"
+    rpi_addresses: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_default_ipv4', 'address']) }}"
+  
+
 # main tasks for prometheus configuration
 - name: update prometheus.yml configuration
   block:
@@ -45,3 +49,4 @@
   
 
   
+

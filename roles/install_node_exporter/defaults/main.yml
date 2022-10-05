@@ -4,8 +4,3 @@
 install_path: /opt/node-exporter
 download_url: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-arm64.tar.gz
 
-prometheus_config: true #prometheus will be configured if true
-prometheus_host: 10.0.0.22
-prometheus_config_dir: /etc/prometheus
-prometheus_job_name: test job
-prometheus_scrape_interval: 5s #prometheus global default is usually 15s

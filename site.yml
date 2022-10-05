@@ -5,16 +5,15 @@
   gather_facts: true
   
   vars:
-    rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname']) }}"
-    rpi_addresses: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_default_ipv4', 'address']) }}"
-  
+    inc_prometheus_config: true #prometheus will be configured if true
+    
   tasks:
 
-  - debug:
-      msg: "{{ rpi_hostnames }}"
-  
-  - debug:
-      msg: "{{ rpi_addresses }}"
-
-  #roles:
-  #  - install_node_exporter
+    - name: install node exporter
+      include_role:
+        name: install_node_exporter
+    
+    - name: configure prometheus
+      include_role:
+        name: prometheus_config
+      when: inc_prometheus_config|bool
