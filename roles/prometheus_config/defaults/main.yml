@@ -1,6 +1,5 @@
 ---
-prometheus_host: 10.0.0.22
-prometheus_config_dir: /etc/prometheus
-prometheus_job_name: test job
+prometheus_host: 192.168.0.1
+prometheus_config_dir: /etc/prometheus # default location of prometheus.yml 
+prometheus_job_name: Raspberry Pi Cluster # enter your desired job name
 prometheus_scrape_interval: 5s #prometheus global default is usually 15s
-

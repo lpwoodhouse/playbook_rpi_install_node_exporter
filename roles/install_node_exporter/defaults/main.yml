@@ -1,6 +1,4 @@
 ---
 # default variables for install_node_exporter role
-
-install_path: /opt/node-exporter
 download_url: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-arm64.tar.gz
-
+install_path: /opt/node-exporter # default directory where node exporter binary will be installed
