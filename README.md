@@ -1,9 +1,17 @@
 # Ansible Playbook: rpi_install_node_exporter
+## Part of my Raspberry Pi cluster project
 
-### Part of my Raspberry Pi cluster project
+# Purpose
 
-This playbook installs the node exporter service for publishing metrics that can be scraped by Prometheus.<br>
-It can also update the configuration of an existing Prometheus host.
+This playbook installs the node exporter service for publishing metrics that can be scraped by Prometheus. It can also update the configuration of an existing Prometheus host.<br>
+After installation the node-exporter service will be enabled and started. To view its status (or disable/stop):
+```shell
+systemctl status node-exporter.service
+```
+The metrics by default are published to port 9100 and can be viewed using:
+```shell
+curl http://localhost:9100/metrics
+```
 
 ## Requirements
 
