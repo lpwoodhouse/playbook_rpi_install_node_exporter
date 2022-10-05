@@ -10,7 +10,7 @@
   tasks:
 
   - debug:
-      var: "{{ rpi_nodes }}"
+      msg: "{{ rpi_nodes }}"
 
   #roles:
   #  - install_node_exporter
