@@ -5,12 +5,16 @@
   gather_facts: true
   
   vars:
-    rpi_nodes: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_host']) }}"
+    rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname']) }}"
+    rpi_addresses: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_default_ipv4', 'address']) }}"
   
   tasks:
 
   - debug:
-      msg: "{{ rpi_nodes }}"
+      msg: "{{ rpi_hostnames }}"
+  
+  - debug:
+      msg: "{{ rpi_addresses }}"
 
   #roles:
   #  - install_node_exporter
