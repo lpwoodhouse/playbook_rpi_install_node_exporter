@@ -45,6 +45,7 @@
       name: prometheus
       state: started
       restart: yes
+    check_mode: yes
 
   delegate_to: "{{ prometheus_host }}"
 
