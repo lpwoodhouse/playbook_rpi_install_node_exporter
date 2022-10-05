@@ -15,24 +15,23 @@ curl http://localhost:9100/metrics
 
 ## Requirements
 ```yaml
-collections:<br>
-  - community.general<br>
+collections:
+  - community.general
   - community.docker
 ```
 ## Role Variables
 
 Variables for each role are listed below, along with default values (see ```defaults/main.yml```)
 ```yaml
-
 # install_node_exporter role
 download_url: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-arm64.tar.gz
 install_path: /opt/node-exporter # default directory where node exporter binary will be installed
 
-#prometheus_config role
+# prometheus_config role
 prometheus_host: 192.168.0.1
 prometheus_config_dir: /etc/prometheus # default location of prometheus.yml 
 prometheus_job_name: Raspberry Pi Cluster # enter your desired job name
-prometheus_scrape_interval: 5s #prometheus global default is usually 15s
+prometheus_scrape_interval: 5s # prometheus global default is usually 15s
 ```
 ## Dependencies
 
@@ -46,7 +45,7 @@ None
   become: true
   gather_facts: true  
   vars:
-    inc_prometheus_config: true #prometheus will be configured if true    
+    inc_prometheus_config: true # prometheus will be configured if true    
   tasks:
     - name: install node exporter
       include_role:
