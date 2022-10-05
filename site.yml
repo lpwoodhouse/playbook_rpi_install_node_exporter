@@ -17,3 +17,4 @@
       include_role:
         name: prometheus_config
       when: inc_prometheus_config|bool
+      run_once: true

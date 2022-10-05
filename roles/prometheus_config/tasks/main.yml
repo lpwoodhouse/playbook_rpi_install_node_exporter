@@ -1,10 +1,10 @@
 ---
 # get the required rpi node variables for prometheus conifiguration 
-- name: set rpi node variables
-  set_fact:
-    rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname']) }}"
-    rpi_addresses: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_default_ipv4', 'address']) }}"
-  delegate_to: localhost
+#- name: set rpi node variables
+#  set_fact:
+#    rpi_hostnames: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_hostname']) }}"
+#    rpi_addresses: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_default_ipv4', 'address']) }}"
+#  delegate_to: localhost
 
 # configure prometheus.yml
 - name: update prometheus.yml configuration
