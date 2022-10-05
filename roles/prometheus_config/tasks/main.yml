@@ -18,13 +18,13 @@
   - name: copy existing prometheus.yml
     copy:
       src: "{{ prometheus_config_dir }}/prometheus.yml"
-      dest: "{{ prometheus_config_dir }}/prometheus.d/temp1.yml"
+      dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus1.yml"
       remote_src: yes
 
   - name: copy new config to prometheus host
     template:
-      src: prometheus.yml.j2
-      dest: "{{ prometheus_config_dir }}/prometheus.d/temp2.yml"
+      src: prometheus2.yml.j2
+      dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus2.yml"
   
   - name: assemble new config
     assemble:
