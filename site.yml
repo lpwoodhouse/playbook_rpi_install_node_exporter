@@ -3,6 +3,14 @@
   hosts: all
   become: true
   gather_facts: true
+  
+  vars:
+    rpi_nodes: "{{ groups ['all'] | map ('extract', hostvars, ['ansible_host']) }}"
+  
+  tasks:
 
-  roles:
-    - install_node_exporter
+  - debug:
+      var: "{{ rpi_nodes }}"
+
+  #roles:
+  #  - install_node_exporter

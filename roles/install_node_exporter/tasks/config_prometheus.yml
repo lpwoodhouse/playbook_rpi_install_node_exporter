@@ -1,28 +1,34 @@
 ---
 # main tasks for prometheus configuration
-- name: configure prometheus
+- name: update prometheus.yml configuration
   block:
 
-  - name: create prometheus.d
+  - name: create temp dir prometheus.d
     file:
       path: "{{ prometheus_config_dir }}/prometheus.d"
       state: directory
 
-  - name: temp copy existing prometheus.yml config
+  - name: copy existing prometheus.yml
     copy:
       src: "{{ prometheus_config_dir }}/prometheus.yml"
       dest: "{{ prometheus_config_dir }}/prometheus.d/temp1.yml"
       remote_src: yes
 
-  - name: temp copy new config to prometheus host
+  - name: copy new config to prometheus host
     template:
       src: prometheus.yml.j2
       dest: "{{ prometheus_config_dir }}/prometheus.d/temp2.yml"
   
-  - name: assemble new config from temp files
+  - name: assemble new config
     assemble:
       src: "{{ prometheus_config_dir }}/prometheus.d"
-      dest: "{{ prometheus_config_dir }}/prometheus.d/prometheus.yml"
+      dest: "{{ prometheus_config_dir }}/prometheus.yml"
+      backup: yes
+  
+  - name: remove temp config file
+    file:
+      path: "{{ prometheus_config_dir }}/prometheus.d"
+      state: absent
 
   # restart the prometheus container
   - name: restart prometheus
@@ -30,6 +36,9 @@
       name: prometheus
       state: started
       restart: yes
+
+
+
 
   delegate_to: "{{ prometheus_host }}"
 
