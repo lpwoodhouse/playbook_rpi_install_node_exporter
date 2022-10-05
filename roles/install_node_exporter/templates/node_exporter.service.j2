@@ -7,7 +7,7 @@ After=network-online.target
 User={{ ansible_user }}
 Restart=on-failure
 
-ExecStart={{ install_path }}/node_exporter
+ExecStart={{ install_path }}/node_exporter --web.listen-address=:[{{ web_port }}]
 
 [Install]
 WantedBy=multi-user.target

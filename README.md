@@ -26,6 +26,7 @@ Variables for each role are listed below, along with default values (see ```defa
 # install_node_exporter role
 download_url: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-arm64.tar.gz
 install_path: /opt/node-exporter # default directory where node exporter binary will be installed
+web_port: 9100 # default web.listen-address port can be changed when theres a conflict
 
 # prometheus_config role
 prometheus_host: 192.168.0.1

@@ -29,4 +29,4 @@
 
 - name: check metrics url
   uri:
-    url: http://{{ ansible_default_ipv4.address }}:9100/metrics
+    url: http://{{ ansible_default_ipv4.address }}:{{ web_port }}/metrics

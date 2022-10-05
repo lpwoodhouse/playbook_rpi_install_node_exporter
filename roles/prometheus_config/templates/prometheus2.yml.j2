@@ -4,7 +4,7 @@
     scrape_interval: {{ prometheus_scrape_interval }}
     static_configs:
 {% for h in groups ['all'] %}
-      - targets: ['{{ hostvars[h].ansible_default_ipv4.address }}:9100']
+      - targets: ['{{ hostvars[h].ansible_default_ipv4.address }}:{{ web_port }}']
         labels:
           instance: {{ hostvars[h].ansible_hostname }}
 {% endfor %}
