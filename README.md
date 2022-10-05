@@ -14,15 +14,15 @@ curl http://localhost:9100/metrics
 ```
 
 ## Requirements
-
+```yaml
 collections:<br>
-  community.general<br>
-  community.docker
-
+  - community.general<br>
+  - community.docker
+```
 ## Role Variables
 
 Variables for each role are listed below, along with default values (see ```defaults/main.yml```)
-```shell
+```yaml
 
 # install_node_exporter role
 download_url: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-arm64.tar.gz
