@@ -1,7 +1,11 @@
 # Ansible Playbook: rpi_install_node_exporter
+![GitHub last commit](https://img.shields.io/github/last-commit/lpwoodhouse/playbook_rpi_install_node_exporter)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/lpwoodhouse/playbook_rpi_install_node_exporter)
+![GitHub top language](https://img.shields.io/github/languages/top/lpwoodhouse/playbook_rpi_install_node_exporter)
+
 ## Part of my Raspberry Pi cluster project
 
-# Purpose
+## Purpose
 
 This playbook installs the node exporter service for publishing metrics that can be scraped by Prometheus. It can also update the configuration of an existing Prometheus host.<br>
 After installation the node-exporter service will be enabled and started. To view its status (or disable/stop):
@@ -59,7 +63,7 @@ None
 
 ## License
 
-[MIT](LICENCE)
+[![GitHub](https://img.shields.io/github/license/lpwoodhouse/playbook_rpi_install_node_exporter)](LICENSE)
 
 ## Author Information
 
