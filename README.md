@@ -1,10 +1,12 @@
-# Ansible Playbook: rpi_install_node_exporter
-![GitHub last commit](https://img.shields.io/github/last-commit/lpwoodhouse/playbook_rpi_install_node_exporter)
-![GitHub repo file count](https://img.shields.io/github/directory-file-count/lpwoodhouse/playbook_rpi_install_node_exporter)
-![GitHub top language](https://img.shields.io/github/languages/top/lpwoodhouse/playbook_rpi_install_node_exporter)
-
-## Part of my Raspberry Pi cluster project
-
+# Install Node-Exporter on RPI Host
+## Raspberry Pi cluster project
+![Raspberry Pi](https://img.shields.io/badge/-Raspberry%20Pi-C51A4A?style=flat&logo=Raspberry-Pi)
+![Prometheus](https://img.shields.io/badge/-Prometheus-E6522C?style=flat&logo=prometheus&logoColor=white)
+[![playbook](https://img.shields.io/badge/Ansible%20Playbook-grey?stype=flat&logo=ansible&logoColor=EE0000)](site.yml)
+![GitHub last commit](https://img.shields.io/github/last-commit/lpwoodhouse/rpi_install_node_exporter)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/lpwoodhouse/rpi_install_node_exporter)
+![GitHub top language](https://img.shields.io/github/languages/top/lpwoodhouse/rpi_install_node_exporter)
+[![GitHub](https://img.shields.io/github/license/lpwoodhouse/rpi_install_node_exporter)](LICENSE)
 ## Purpose
 
 This playbook installs the node exporter service for publishing metrics that can be scraped by Prometheus. It can also update the configuration of an existing Prometheus host.<br>
@@ -60,10 +62,6 @@ None
         name: prometheus_config
       when: inc_prometheus_config|bool
 ```
-
-## License
-
-[![GitHub](https://img.shields.io/github/license/lpwoodhouse/playbook_rpi_install_node_exporter)](LICENSE)
 
 ## Author Information
 
